@@ -1,0 +1,48 @@
+"notification_new_request_title" = "New Request";
+"notification_new_request_body" = "New Request Came";
+"notification_new_message_title" = "New Message";
+"notification_paid_title" = "Paid!";
+"notification_paid_body" = "Trip has been paid";
+
+/* Trip Status Requested */
+"Requested" = "Requested";
+
+/* Trip Status Not found
+   Trip Status No close found */
+"Not Found" = "Not Found";
+
+/* Trip Status found */
+"Found" = "Found";
+
+/* Trip Status Driver Accepted */
+"Driver Accepted" = "Driver Accepted";
+
+/* Trip Status Waiting for prepay */
+"Waiting for payment" = "Waiting for payment";
+
+/* Trip Status Driver Canceled */
+"Driver Canceled" = "Driver Canceled";
+
+/* Trip Status Rider Canceled */
+"Rider Canceled" = "Rider Canceled";
+
+/* Trip Status Arrived */
+"Arrived" = "Arrived";
+
+/* Trip Status Started */
+"Started" = "Started";
+
+/* Trip Status Waiting For Post Pay */
+"Waiting for payment" = "Waiting for payment";
+
+/* Trip Status Waiting For Review */
+"Waiting For Review" = "Waiting For Review";
+
+/* Trip Status Finished */
+"Finished" = "Finished";
+
+/* Trip Status Booked */
+"Booked" = "Booked";
+
+/* Trip Status Expired */
+"Expired" = "Expired";

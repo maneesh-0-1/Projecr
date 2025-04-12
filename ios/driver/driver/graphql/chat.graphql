@@ -1,0 +1,49 @@
+fragment MessageFragment on OrderMessage {
+  id
+  sentAt
+  sentByDriver
+  sentAt
+  status
+  content
+  request {
+	rider {
+	  id
+	  firstName
+	  lastName
+	  media {
+		address
+	  }
+	}
+  }
+}
+query GetMessages {
+  driver(id: "1") {
+	id
+	firstName
+	lastName
+	media {
+	  address
+	}
+	orders {
+	  nodes {
+		id
+		conversations {
+		...MessageFragment
+	  }
+	  }
+	}
+  }
+}
+
+
+mutation SendMessage($orderId: ID!, $content: String!) {
+	createOneOrderMessage(input: {orderMessage: {requestId: $orderId, content: $content}}) {
+		...MessageFragment
+	}
+}
+
+subscription NewMessageReceived {
+	newMessageReceived {
+		...MessageFragment
+	}
+}

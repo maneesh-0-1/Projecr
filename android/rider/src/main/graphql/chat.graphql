@@ -1,0 +1,36 @@
+fragment ChatUser on Driver {
+    firstName
+    lastName
+    media {
+        address
+    }
+}
+fragment message on OrderMessage {
+    sentAt
+    sentByDriver
+    content
+    status
+    request {
+        driver {
+            ...ChatUser
+        }
+    }
+}
+
+query GetMessages($orderId: ID!) {
+    orderMessages(filter: {requestId: {eq:$orderId}}) {
+        ...message
+    }
+}
+
+mutation SendMessage($orderId: ID!, $content: String!) {
+    createOneOrderMessage(input: {orderMessage: {requestId: $orderId, content: $content}}) {
+        ...message
+    }
+}
+
+subscription NewMessageReceived {
+    newMessageReceived {
+        ...message
+    }
+}

@@ -1,0 +1,76 @@
+fragment Point on Point {
+  lat
+  lng
+}
+fragment AvailableOrder on AvailableOrder {
+    id
+    status
+    currency
+    costBest
+	distanceBest
+	durationBest
+    addresses
+    points {
+      ...Point
+    }
+}
+
+fragment CurrentOrder on Order {
+  id
+  createdOn
+  expectedTimestamp
+  startTimestamp
+  status
+  currency
+  costBest
+  costAfterCoupon
+  durationBest
+  paidAmount
+  etaPickup
+  points {
+    ...Point
+  }
+  service {
+    paymentMethod
+  }
+  addresses
+  rider {
+    mobileNumber
+    firstName
+    lastName
+    media {
+      address
+    }
+  }
+}
+
+fragment historyOrderItem on OrderConnection {
+  edges {
+    node {
+      id
+      status
+      createdOn
+      addresses
+      currency
+      costAfterCoupon
+      startTimestamp
+      finishTimestamp
+      distanceBest
+      points {
+        ...Point
+      }
+      service {
+        name
+        media {
+          address
+        }
+      }
+    }
+  }
+  pageInfo {
+    hasNextPage
+    endCursor
+    startCursor
+    hasPreviousPage
+  }
+}

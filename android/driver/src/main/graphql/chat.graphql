@@ -1,0 +1,57 @@
+fragment RiderUser on Rider {
+    firstName
+    lastName
+    media {
+        address
+    }
+}
+
+fragment DriverUser on Driver {
+    firstName
+    lastName
+    media {
+        address
+    }
+}
+
+fragment message on OrderMessage {
+    sentAt
+    sentByDriver
+    content
+    status
+}
+
+fragment OrderForChat on Order {
+    id
+    rider {
+        ...RiderUser
+    }
+    driver {
+        ...DriverUser
+    }
+    conversations {
+        ...message
+    }
+}
+
+query GetMessages {
+    driver(id: "1") {
+        orders {
+            nodes {
+                ...OrderForChat
+            }
+        }
+    }
+}
+
+mutation SendMessage($orderId: ID!, $content: String!) {
+    createOneOrderMessage(input: {orderMessage: {requestId: $orderId, content: $content}}) {
+        ...message
+    }
+}
+
+subscription NewMessageReceived {
+    newMessageReceived {
+        ...message
+    }
+}

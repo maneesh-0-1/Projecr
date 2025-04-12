@@ -1,0 +1,102 @@
+{
+  "9109e8ddbbc8c827b9b5787b1947c5bab0a09e61b96159e598e3065dc981e8a5": {
+    "name": "GetAddresses",
+    "source": "query GetAddresses {\n  riderAddresses {\n    __typename\n    id\n    title\n    type\n    details\n    location {\n      __typename\n      ...Point\n    }\n  }\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "d118b0a0c5ecc1cb8820f2160b38cd4f1fef6ba83547ce3455ab8e9b155470df": {
+    "name": "CreateAddress",
+    "source": "mutation CreateAddress($title: String!, $details: String!, $lat: Float!, $lng: Float!) {\n  createOneRiderAddress(\n    input: {riderAddress: {title: $title, details: $details, location: {lat: $lat, lng: $lng}}}\n  ) {\n    __typename\n    id\n  }\n}"
+  },
+  "4352c7bdbcda4beee382661b57a3889840598788197e5607594a738c1e3b794a": {
+    "name": "DeleteAddress",
+    "source": "mutation DeleteAddress($id: ID!) {\n  deleteOneRiderAddress(input: {id: $id}) {\n    __typename\n    id\n  }\n}"
+  },
+  "f07977f727de4ea2c34e043084c1ff2e2c8c81939c27dc00d090b23fa47808a2": {
+    "name": "UpdateAddress",
+    "source": "mutation UpdateAddress($id: ID!, $title: String!, $details: String!, $lat: Float!, $lng: Float!) {\n  updateOneRiderAddress(\n    input: {id: $id, update: {title: $title, details: $details, location: {lat: $lat, lng: $lng}}}\n  ) {\n    __typename\n    id\n  }\n}"
+  },
+  "8cc1864604650abecbb1498fe9cd3a5786fc3df5500fdc8bdc12cc873d41344c": {
+    "name": "GetAnnouncements",
+    "source": "query GetAnnouncements {\n  announcements(paging: {first: 50}) {\n    __typename\n    edges {\n      __typename\n      node {\n        __typename\n        id\n        title\n        startAt\n        expireAt\n        description\n      }\n    }\n  }\n}"
+  },
+  "00665b5b72a60acc277eb212489ec1000b5a77db68d373f9a57a2f79eb378e2f": {
+    "name": "GetMessages",
+    "source": "query GetMessages {\n  currentOrder {\n    __typename\n    id\n    conversations {\n      __typename\n      ...MessageFragment\n    }\n  }\n}\nfragment MessageFragment on OrderMessage {\n  __typename\n  id\n  sentAt\n  sentByDriver\n  sentAt\n  status\n  content\n  request {\n    __typename\n    driver {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n    rider {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n  }\n}"
+  },
+  "53b9131c3cd3cf0e5a4162a334b150e80d2a25ef1675b3f99749ab6f425cc8eb": {
+    "name": "SendMessage",
+    "source": "mutation SendMessage($orderId: ID!, $content: String!) {\n  createOneOrderMessage(\n    input: {orderMessage: {orderId: $orderId, content: $content}}\n  ) {\n    __typename\n    ...MessageFragment\n  }\n}\nfragment MessageFragment on OrderMessage {\n  __typename\n  id\n  sentAt\n  sentByDriver\n  sentAt\n  status\n  content\n  request {\n    __typename\n    driver {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n    rider {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n  }\n}"
+  },
+  "43f611488ad3da69cd6104a46c3ba83677ff4a9dad09798f462fc02ef662122d": {
+    "name": "NewMessageReceived",
+    "source": "subscription NewMessageReceived {\n  newMessageReceived {\n    __typename\n    ...MessageFragment\n  }\n}\nfragment MessageFragment on OrderMessage {\n  __typename\n  id\n  sentAt\n  sentByDriver\n  sentAt\n  status\n  content\n  request {\n    __typename\n    driver {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n    rider {\n      __typename\n      id\n      firstName\n      lastName\n      media {\n        __typename\n        address\n      }\n    }\n  }\n}"
+  },
+  "6eea08cd4eeda80397371e46476ad1916e1a4bad3178e943a1ebf99e78c49ca2": {
+    "name": "History",
+    "source": "query History {\n  completed: orders(filter: {status: {eq: Finished}}) {\n    __typename\n    ...historyOrderItem\n  }\n  canceled: orders(filter: {status: {eq: DriverCanceled}}) {\n    __typename\n    ...historyOrderItem\n  }\n}\nfragment historyOrderItem on OrderConnection {\n  __typename\n  edges {\n    __typename\n    node {\n      __typename\n      id\n      status\n      createdOn\n      addresses\n      currency\n      costAfterCoupon\n      startTimestamp\n      finishTimestamp\n      distanceBest\n      paymentGateway {\n        __typename\n        title\n      }\n      driver {\n        __typename\n        firstName\n        lastName\n      }\n      service {\n        __typename\n        media {\n          __typename\n          address\n        }\n        name\n      }\n    }\n  }\n  pageInfo {\n    __typename\n    hasNextPage\n    endCursor\n    startCursor\n    hasPreviousPage\n  }\n}"
+  },
+  "0dc5d0e2e238f2cf55509d3d3b61de7927913dba20a81b931e19f79ba659f9cb": {
+    "name": "WriteComplaint",
+    "source": "mutation WriteComplaint($orderId: ID!, $subject: String!, $content: String) {\n  createOneComplaint(\n    input: {complaint: {requestId: $orderId, subject: $subject, content: $content}}\n  ) {\n    __typename\n    id\n  }\n}"
+  },
+  "ae50e3e248168e17801de907942bfda4650724fa35730e1b6c3175ca5146b7eb": {
+    "name": "Login",
+    "source": "mutation Login($firebaseToken: String!) {\n  login(input: {firebaseToken: $firebaseToken}) {\n    __typename\n    jwtToken\n  }\n}"
+  },
+  "391fabb25eceeba4dfd201c5ada45480680c61250862716a94f4fcd1ec90645a": {
+    "name": "GetCurrentOrder",
+    "source": "query GetCurrentOrder {\n  currentOrderWithLocation {\n    __typename\n    order {\n      __typename\n      ...CurrentOrder\n    }\n    driverLocation {\n      __typename\n      ...Point\n    }\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "caa0a291500f6a2329750a3291deef5744e08a45d9871e70847a910820d1b368": {
+    "name": "CalculateFare",
+    "source": "mutation CalculateFare($points: [PointInput!]!) {\n  calculateFare(input: {points: $points}) {\n    __typename\n    distance\n    duration\n    currency\n    services {\n      __typename\n      id\n      name\n      services {\n        __typename\n        id\n        name\n        cancellationTotalFee\n        media {\n          __typename\n          address\n        }\n        cost\n      }\n    }\n    error\n  }\n}"
+  },
+  "890471180b2215afc02492d53742e2e1301cbbcf8778b30328d9387e1657036a": {
+    "name": "CreateOrder",
+    "source": "mutation CreateOrder($input: CreateOrderInput!) {\n  createOrder(input: $input) {\n    __typename\n    ...CurrentOrder\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "d42809a3c6876259b4c242dc655eea356c976c09f43c385ed19fcb1df7370e7d": {
+    "name": "CancelOrder",
+    "source": "mutation CancelOrder {\n  cancelOrder {\n    __typename\n    ...CurrentOrder\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "90ee1cf9d82aa13a15b7c88f6c0fb2af8e5b85a4fd52c9be3b9ad88a6c24c3e6": {
+    "name": "UpdatedOrder",
+    "source": "subscription UpdatedOrder {\n  orderUpdated {\n    __typename\n    ...CurrentOrder\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "198762855d7aaa2f7a6ec757a38c3ebc45e8293a833d3faee9257dbb992cb4e0": {
+    "name": "DriverLocationUpdated",
+    "source": "subscription DriverLocationUpdated($driverId: ID!) {\n  driverLocationUpdated(driverId: $driverId) {\n    __typename\n    ...Point\n  }\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "159ecfb4e9519706466bdff1ce46e02a58461f87fda5841a8275ee4c14e41764": {
+    "name": "SubmitFeedback",
+    "source": "mutation SubmitFeedback($score: Int!, $description: String!, $orderId: ID!) {\n  submitReview(\n    review: {score: $score, description: $description, requestId: $orderId}\n  ) {\n    __typename\n    ...CurrentOrder\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "bed290962bcf9fc5c87547c6a114a9f6221e4e21cfec666ae8a43f5c2a7bfc6e": {
+    "name": "GetDriversLocation",
+    "source": "query GetDriversLocation($point: PointInput) {\n  getDriversLocation(center: $point) {\n    __typename\n    ...Point\n  }\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "ed2fe680f0298e13bb05f7e115cc7184eb887f4d9e5ad027fb9299ed8f9c873d": {
+    "name": "ApplyCoupon",
+    "source": "mutation ApplyCoupon($code: String!) {\n  applyCoupon(code: $code) {\n    __typename\n    ...CurrentOrder\n  }\n}\nfragment CurrentOrder on Order {\n  __typename\n  id\n  status\n  startTimestamp\n  finishTimestamp\n  durationBest\n  distanceBest\n  points {\n    __typename\n    ...Point\n  }\n  driver {\n    __typename\n    id\n    firstName\n    lastName\n    media {\n      __typename\n      address\n    }\n    mobileNumber\n    carPlate\n    car {\n      __typename\n      name\n    }\n    carColor {\n      __typename\n      name\n    }\n    rating\n  }\n  service {\n    __typename\n    media {\n      __typename\n      address\n    }\n    paymentMethod\n    name\n  }\n  etaPickup\n  paidAmount\n  costAfterCoupon\n  costBest\n  currency\n  addresses\n}\nfragment Point on Point {\n  __typename\n  lat\n  lng\n}"
+  },
+  "8ea90c2bbd7bcda1d3c6f8b3757698144e501d1283870aea55ae157875d690ff": {
+    "name": "GetRider",
+    "source": "query GetRider {\n  rider(id: 1) {\n    __typename\n    ...BasicProfile\n  }\n}\nfragment BasicProfile on Rider {\n  __typename\n  id\n  mobileNumber\n  firstName\n  lastName\n  gender\n  email\n  media {\n    __typename\n    address\n  }\n}"
+  },
+  "e8639a1eb09e0ab19f3d9b5b5c6fb4f054c529620288a5834b556c0d3c18cc36": {
+    "name": "UpdateProfile",
+    "source": "mutation UpdateProfile($firstName: String!, $lastName: String!, $gender: Gender, $email: String) {\n  updateOneRider(\n    input: {id: \"1\", update: {firstName: $firstName, lastName: $lastName, gender: $gender, email: $email}}\n  ) {\n    __typename\n    id\n  }\n}"
+  },
+  "b5b7292482a085d67ba287bd2579975cd9d18f54c0b110b95478852a70c47324": {
+    "name": "Wallet",
+    "source": "query Wallet {\n  riderWallets {\n    __typename\n    id\n    balance\n    currency\n  }\n  paymentGateways {\n    __typename\n    id\n    title\n    type\n    publicKey\n  }\n}"
+  },
+  "0dc7bd2e5186c04591ea1d512aa81a47f0bcdcdfa65632e2a3a451bf2b43c362": {
+    "name": "TopUpWallet",
+    "source": "mutation TopUpWallet($input: TopUpWalletInput!) {\n  topUpWallet(input: $input) {\n    __typename\n    status\n    url\n  }\n}"
+  },
+  "a0b80db100031e2a94851aa78907924e0a8e15d0a3cfc8ebbc9b3a1bf702c12e": {
+    "name": "Transactions",
+    "source": "query Transactions {\n  riderTransacions {\n    __typename\n    edges {\n      __typename\n      node {\n        __typename\n        createdAt\n        amount\n        currency\n        refrenceNumber\n        deductType\n        action\n        rechargeType\n      }\n    }\n  }\n}"
+  }
+}

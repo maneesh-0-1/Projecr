@@ -1,0 +1,50 @@
+query Wallet {
+    driverWallets {
+        id
+        balance
+        currency
+    }
+    paymentGateways {
+        id
+        title
+        type
+        publicKey
+    }
+}
+
+mutation TopUpWallet($input: TopUpWalletInput!) {
+    topUpWallet(input: $input) {
+        status
+        url
+    }
+}
+
+query Transactions {
+    driverTransacions {
+        edges {
+            node {
+                createdAt
+                amount
+                currency
+                refrenceNumber
+                deductType
+                action
+                rechargeType
+            }
+        }
+    }
+}
+
+query GetStats($timeFrame: TimeQuery!) {
+    getStats(timeframe: $timeFrame) {
+        currency
+        dataset {
+            count
+            current
+            distance
+            earning
+            name
+            time
+        }
+    }
+}

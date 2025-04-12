@@ -1,0 +1,1509 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Announcement {
+    description: String!
+    expireAt: Timestamp!
+    id: ID!
+    startAt: Timestamp!
+    title: String!
+}
+
+type AnnouncementAggregateGroupBy {
+    id: ID
+}
+
+type AnnouncementAvgAggregate {
+    id: Float
+}
+
+type AnnouncementConnection {
+    "Array of edges."
+    edges: [AnnouncementEdge!]!
+    "Paging information"
+    pageInfo: PageInfo!
+}
+
+type AnnouncementCountAggregate {
+    id: Int
+}
+
+type AnnouncementEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Announcement"
+    node: Announcement!
+}
+
+type AnnouncementMaxAggregate {
+    id: ID
+}
+
+type AnnouncementMinAggregate {
+    id: ID
+}
+
+type AnnouncementSumAggregate {
+    id: Float
+}
+
+type CalculateFareDTO {
+    currency: String!
+    distance: Float!
+    duration: Float!
+    error: CalculateFareError
+    services: [ServiceCategory!]!
+}
+
+type CarColor {
+    id: ID!
+    name: String!
+}
+
+type CarColorAggregateGroupBy {
+    id: ID
+}
+
+type CarColorAvgAggregate {
+    id: Float
+}
+
+type CarColorCountAggregate {
+    id: Int
+}
+
+type CarColorEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the CarColor"
+    node: CarColor!
+}
+
+type CarColorMaxAggregate {
+    id: ID
+}
+
+type CarColorMinAggregate {
+    id: ID
+}
+
+type CarColorSumAggregate {
+    id: Float
+}
+
+type CarModel {
+    id: ID!
+    name: String!
+}
+
+type CarModelAggregateGroupBy {
+    id: ID
+}
+
+type CarModelAvgAggregate {
+    id: Float
+}
+
+type CarModelCountAggregate {
+    id: Int
+}
+
+type CarModelEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the CarModel"
+    node: CarModel!
+}
+
+type CarModelMaxAggregate {
+    id: ID
+}
+
+type CarModelMinAggregate {
+    id: ID
+}
+
+type CarModelSumAggregate {
+    id: Float
+}
+
+type Complaint {
+    content: String
+    id: ID!
+    status: ComplaintStatus!
+    subject: String!
+}
+
+type ComplaintAggregateGroupBy {
+    id: ID
+}
+
+type ComplaintAvgAggregate {
+    id: Float
+}
+
+type ComplaintCountAggregate {
+    id: Int
+}
+
+type ComplaintEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Complaint"
+    node: Complaint!
+}
+
+type ComplaintMaxAggregate {
+    id: ID
+}
+
+type ComplaintMinAggregate {
+    id: ID
+}
+
+type ComplaintSumAggregate {
+    id: Float
+}
+
+type Coupon {
+    code: String!
+    description: String!
+    expireAt: Timestamp!
+    id: ID!
+    title: String!
+}
+
+type CurrentOrder {
+    driverLocation: Point
+    order: Order!
+}
+
+type DeleteManyResponse {
+    "The number of records deleted."
+    deletedCount: Int!
+}
+
+type Driver {
+    car: CarModel
+    carColor: CarColor
+    carPlate: String
+    firstName: String!
+    id: ID!
+    lastName: String!
+    media: Media
+    mobileNumber: String!
+    rating: Int
+    reviewCount: Float!
+}
+
+type DriverAggregateGroupBy {
+    id: ID
+}
+
+type DriverAvgAggregate {
+    id: Float
+}
+
+type DriverCountAggregate {
+    id: Int
+}
+
+type DriverEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Driver"
+    node: Driver!
+}
+
+type DriverMaxAggregate {
+    id: ID
+}
+
+type DriverMinAggregate {
+    id: ID
+}
+
+type DriverSumAggregate {
+    id: Float
+}
+
+type Login {
+    jwtToken: String!
+}
+
+type Media {
+    address: String!
+    base64: String
+    id: ID!
+}
+
+type MediaAggregateGroupBy {
+    id: ID
+}
+
+type MediaAvgAggregate {
+    id: Float
+}
+
+type MediaCountAggregate {
+    id: Int
+}
+
+type MediaEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Media"
+    node: Media!
+}
+
+type MediaMaxAggregate {
+    id: ID
+}
+
+type MediaMinAggregate {
+    id: ID
+}
+
+type MediaSumAggregate {
+    id: Float
+}
+
+type Mutation {
+    addConversationsToOrder(input: AddConversationsToOrderInput!): Order!
+    addCouponsToRider(input: AddCouponsToRiderInput!): Rider!
+    addOrdersToRider(input: AddOrdersToRiderInput!): Rider!
+    applyCoupon(code: String!): Order!
+    calculateFare(input: CalculateFareInput!): CalculateFareDTO!
+    cancelOrder: Order!
+    createManyAnnouncements(input: CreateManyAnnouncementsInput!): [Announcement!]!
+    createManyRiderAddresses(input: CreateManyRiderAddressesInput!): [RiderAddress!]!
+    createOneAnnouncement(input: CreateOneAnnouncementInput!): Announcement!
+    createOneComplaint(input: CreateOneComplaintInput!): Complaint!
+    createOneOrderMessage(input: CreateOneOrderMessageInput!): OrderMessage!
+    createOneRiderAddress(input: CreateOneRiderAddressInput!): RiderAddress!
+    createOrder(input: CreateOrderInput!): Order!
+    deleteManyRiderAddresses(input: DeleteManyRiderAddressesInput!): DeleteManyResponse!
+    deleteOneRiderAddress(input: DeleteOneRiderAddressInput!): RiderAddressDeleteResponse!
+    login(input: LoginInput!): Login!
+    removeCarColorFromDriver(input: RemoveCarColorFromDriverInput!): Driver!
+    removeCarFromDriver(input: RemoveCarFromDriverInput!): Driver!
+    removeConversationsFromOrder(input: RemoveConversationsFromOrderInput!): Order!
+    removeCouponsFromRider(input: RemoveCouponsFromRiderInput!): Rider!
+    removeDriverFromOrder(input: RemoveDriverFromOrderInput!): Order!
+    removeMediaFromDriver(input: RemoveMediaFromDriverInput!): Driver!
+    removeMediaFromRider(input: RemoveMediaFromRiderInput!): Rider!
+    removeMediaFromService(input: RemoveMediaFromServiceInput!): Service!
+    removeOrdersFromRider(input: RemoveOrdersFromRiderInput!): Rider!
+    removePaymentGatewayFromOrder(input: RemovePaymentGatewayFromOrderInput!): Order!
+    removeRequestFromOrderMessage(input: RemoveRequestFromOrderMessageInput!): OrderMessage!
+    removeRiderFromOrder(input: RemoveRiderFromOrderInput!): Order!
+    removeServiceFromOrder(input: RemoveServiceFromOrderInput!): Order!
+    setCarColorOnDriver(input: SetCarColorOnDriverInput!): Driver!
+    setCarOnDriver(input: SetCarOnDriverInput!): Driver!
+    setConversationsOnOrder(input: SetConversationsOnOrderInput!): Order!
+    setCouponsOnRider(input: SetCouponsOnRiderInput!): Rider!
+    setDriverOnOrder(input: SetDriverOnOrderInput!): Order!
+    setMediaOnDriver(input: SetMediaOnDriverInput!): Driver!
+    setMediaOnRider(input: SetMediaOnRiderInput!): Rider!
+    setMediaOnService(input: SetMediaOnServiceInput!): Service!
+    setOrdersOnRider(input: SetOrdersOnRiderInput!): Rider!
+    setPaymentGatewayOnOrder(input: SetPaymentGatewayOnOrderInput!): Order!
+    setRequestOnOrderMessage(input: SetRequestOnOrderMessageInput!): OrderMessage!
+    setRiderOnOrder(input: SetRiderOnOrderInput!): Order!
+    setServiceOnOrder(input: SetServiceOnOrderInput!): Order!
+    submitReview(review: SubmitFeedbackInput!): Order!
+    topUpWallet(input: TopUpWalletInput!): TopUpWalletResponse!
+    updateManyRiderAddresses(input: UpdateManyRiderAddressesInput!): UpdateManyResponse!
+    updateOneRider(input: UpdateOneRiderInput!): Rider!
+    updateOneRiderAddress(input: UpdateOneRiderAddressInput!): RiderAddress!
+}
+
+type Order {
+    addresses: [String!]!
+    conversations(
+        "Specify to filter the records returned."
+        filter: OrderMessageFilter = {},
+        "Specify to sort results."
+        sorting: [OrderMessageSort!] = []
+    ): [OrderMessage!]!
+    costAfterCoupon: Float!
+    costBest: Float!
+    createdOn: Timestamp!
+    currency: String!
+    distanceBest: Int!
+    driver: Driver
+    driverId: ID
+    durationBest: Int!
+    etaPickup: Timestamp
+    finishTimestamp: Timestamp
+    id: ID!
+    paidAmount: Float!
+    paymentGateway: PaymentGateway
+    points: [Point!]!
+    rider: Rider!
+    riderId: ID!
+    service: Service!
+    startTimestamp: Timestamp
+    status: OrderStatus!
+}
+
+type OrderAggregateGroupBy {
+    driverId: ID
+    id: ID
+    riderId: ID
+    status: OrderStatus
+}
+
+type OrderAvgAggregate {
+    driverId: Float
+    id: Float
+    riderId: Float
+}
+
+type OrderConnection {
+    "Array of edges."
+    edges: [OrderEdge!]!
+    "Paging information"
+    pageInfo: PageInfo!
+}
+
+type OrderCountAggregate {
+    driverId: Int
+    id: Int
+    riderId: Int
+    status: Int
+}
+
+type OrderEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Order"
+    node: Order!
+}
+
+type OrderMaxAggregate {
+    driverId: ID
+    id: ID
+    riderId: ID
+    status: OrderStatus
+}
+
+type OrderMessage {
+    content: String!
+    id: ID!
+    request: Order!
+    requestId: ID!
+    sentAt: Timestamp!
+    sentByDriver: Boolean!
+    status: MessageStatus!
+}
+
+type OrderMessageAggregateGroupBy {
+    id: ID
+    requestId: ID
+}
+
+type OrderMessageAvgAggregate {
+    id: Float
+    requestId: Float
+}
+
+type OrderMessageCountAggregate {
+    id: Int
+    requestId: Int
+}
+
+type OrderMessageMaxAggregate {
+    id: ID
+    requestId: ID
+}
+
+type OrderMessageMinAggregate {
+    id: ID
+    requestId: ID
+}
+
+type OrderMessageSumAggregate {
+    id: Float
+    requestId: Float
+}
+
+type OrderMinAggregate {
+    driverId: ID
+    id: ID
+    riderId: ID
+    status: OrderStatus
+}
+
+type OrderSumAggregate {
+    driverId: Float
+    id: Float
+    riderId: Float
+}
+
+type PageInfo {
+    "The cursor of the last returned record."
+    endCursor: ConnectionCursor
+    "true if paging forward and there are more records."
+    hasNextPage: Boolean
+    "true if paging backwards and there are more records."
+    hasPreviousPage: Boolean
+    "The cursor of the first returned record."
+    startCursor: ConnectionCursor
+}
+
+type PaymentGateway {
+    id: ID!
+    publicKey: String
+    title: String!
+    type: PaymentGatewayType!
+}
+
+type PaymentGatewayAggregateGroupBy {
+    id: ID
+}
+
+type PaymentGatewayAvgAggregate {
+    id: Float
+}
+
+type PaymentGatewayCountAggregate {
+    id: Int
+}
+
+type PaymentGatewayMaxAggregate {
+    id: ID
+}
+
+type PaymentGatewayMinAggregate {
+    id: ID
+}
+
+type PaymentGatewaySumAggregate {
+    id: Float
+}
+
+type Point {
+    lat: Float!
+    lng: Float!
+}
+
+type Query {
+    announcement(
+        "The id of the record to find."
+        id: ID!
+    ): Announcement
+    announcements(
+        "Specify to filter the records returned."
+        filter: AnnouncementFilter = {},
+        "Limit or page results."
+        paging: CursorPaging = {first : 10},
+        "Specify to sort results."
+        sorting: [AnnouncementSort!] = []
+    ): AnnouncementConnection!
+    currentOrder: Order!
+    currentOrderWithLocation: CurrentOrder!
+    getDriversLocation(center: PointInput): [Point!]!
+    me(token: String!): Rider!
+    orderMessages(
+        "Specify to filter the records returned."
+        filter: OrderMessageFilter = {},
+        "Specify to sort results."
+        sorting: [OrderMessageSort!] = []
+    ): [OrderMessage!]!
+    orders(
+        "Specify to filter the records returned."
+        filter: OrderFilter = {},
+        "Limit or page results."
+        paging: CursorPaging = {first : 10},
+        "Specify to sort results."
+        sorting: [OrderSort!] = []
+    ): OrderConnection!
+    paymentGateways(
+        "Specify to filter the records returned."
+        filter: PaymentGatewayFilter = {},
+        "Specify to sort results."
+        sorting: [PaymentGatewaySort!] = []
+    ): [PaymentGateway!]!
+    rider(
+        "The id of the record to find."
+        id: ID!
+    ): Rider
+    riderAddress(
+        "The id of the record to find."
+        id: ID!
+    ): RiderAddress
+    riderAddresses(
+        "Specify to filter the records returned."
+        filter: RiderAddressFilter = {},
+        "Specify to sort results."
+        sorting: [RiderAddressSort!] = []
+    ): [RiderAddress!]!
+    riderTransacions(
+        "Specify to filter the records returned."
+        filter: RiderTransacionFilter = {},
+        "Limit or page results."
+        paging: CursorPaging = {first : 10},
+        "Specify to sort results."
+        sorting: [RiderTransacionSort!] = []
+    ): RiderTransacionConnection!
+    riderWallets(
+        "Specify to filter the records returned."
+        filter: RiderWalletFilter = {},
+        "Specify to sort results."
+        sorting: [RiderWalletSort!] = []
+    ): [RiderWallet!]!
+    serviceCategories(
+        "Specify to filter the records returned."
+        filter: ServiceCategoryFilter = {},
+        "Specify to sort results."
+        sorting: [ServiceCategorySort!] = []
+    ): [ServiceCategory!]!
+}
+
+type Rider {
+    coupons(
+        "Specify to filter the records returned."
+        filter: CouponFilter = {},
+        "Specify to sort results."
+        sorting: [CouponSort!] = []
+    ): [Coupon!]!
+    email: String
+    firstName: String
+    gender: Gender
+    id: ID!
+    lastName: String
+    media: Media
+    mobileNumber: String!
+    orders(
+        "Specify to filter the records returned."
+        filter: OrderFilter = {status : {in : [Requested, Booked, Found, NotFound, NoCloseFound, DriverAccepted, Arrived, Started, WaitingForReview, WaitingForPostPay]}},
+        "Specify to sort results."
+        sorting: [OrderSort!] = [{field : id, direction : DESC}]
+    ): [Order!]!
+}
+
+type RiderAddress {
+    details: String!
+    id: ID!
+    location: Point!
+    title: String!
+    type: RiderAddressType!
+}
+
+type RiderAddressAggregateGroupBy {
+    id: ID
+}
+
+type RiderAddressAvgAggregate {
+    id: Float
+}
+
+type RiderAddressCountAggregate {
+    id: Int
+}
+
+type RiderAddressDeleteResponse {
+    details: String
+    id: ID
+    location: Point
+    title: String
+    type: RiderAddressType
+}
+
+type RiderAddressMaxAggregate {
+    id: ID
+}
+
+type RiderAddressMinAggregate {
+    id: ID
+}
+
+type RiderAddressSumAggregate {
+    id: Float
+}
+
+type RiderAggregateGroupBy {
+    id: ID
+}
+
+type RiderAvgAggregate {
+    id: Float
+}
+
+type RiderCountAggregate {
+    id: Int
+}
+
+type RiderEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Rider"
+    node: Rider!
+}
+
+type RiderMaxAggregate {
+    id: ID
+}
+
+type RiderMinAggregate {
+    id: ID
+}
+
+type RiderSumAggregate {
+    id: Float
+}
+
+type RiderTransacion {
+    action: TransactionAction!
+    amount: Float!
+    createdAt: Timestamp!
+    currency: String!
+    deductType: RiderDeductTransactionType
+    id: ID!
+    rechargeType: RiderRechargeTransactionType
+    refrenceNumber: String
+    riderId: Float!
+}
+
+type RiderTransacionAggregateGroupBy {
+    id: ID
+    riderId: ID
+}
+
+type RiderTransacionAvgAggregate {
+    id: Float
+    riderId: Float
+}
+
+type RiderTransacionConnection {
+    "Array of edges."
+    edges: [RiderTransacionEdge!]!
+    "Paging information"
+    pageInfo: PageInfo!
+}
+
+type RiderTransacionCountAggregate {
+    id: Int
+    riderId: Int
+}
+
+type RiderTransacionEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the RiderTransacion"
+    node: RiderTransacion!
+}
+
+type RiderTransacionMaxAggregate {
+    id: ID
+    riderId: ID
+}
+
+type RiderTransacionMinAggregate {
+    id: ID
+    riderId: ID
+}
+
+type RiderTransacionSumAggregate {
+    id: Float
+    riderId: Float
+}
+
+type RiderWallet {
+    balance: Float!
+    currency: String!
+    id: ID!
+    riderId: Float!
+}
+
+type RiderWalletAggregateGroupBy {
+    id: ID
+    riderId: ID
+}
+
+type RiderWalletAvgAggregate {
+    id: Float
+    riderId: Float
+}
+
+type RiderWalletCountAggregate {
+    id: Int
+    riderId: Int
+}
+
+type RiderWalletMaxAggregate {
+    id: ID
+    riderId: ID
+}
+
+type RiderWalletMinAggregate {
+    id: ID
+    riderId: ID
+}
+
+type RiderWalletSumAggregate {
+    id: Float
+    riderId: Float
+}
+
+type Service {
+    cancellationTotalFee: Float!
+    cost: Float!
+    id: ID!
+    media: Media!
+    name: String!
+    paymentMethod: ServicePaymentMethod!
+}
+
+type ServiceAggregateGroupBy {
+    id: ID
+}
+
+type ServiceAvgAggregate {
+    id: Float
+}
+
+type ServiceCategory {
+    id: ID!
+    name: String!
+    services: [Service!]!
+}
+
+type ServiceCategoryAggregateGroupBy {
+    id: ID
+}
+
+type ServiceCategoryAvgAggregate {
+    id: Float
+}
+
+type ServiceCategoryCountAggregate {
+    id: Int
+}
+
+type ServiceCategoryMaxAggregate {
+    id: ID
+}
+
+type ServiceCategoryMinAggregate {
+    id: ID
+}
+
+type ServiceCategorySumAggregate {
+    id: Float
+}
+
+type ServiceCountAggregate {
+    id: Int
+}
+
+type ServiceEdge {
+    "Cursor for this node."
+    cursor: ConnectionCursor!
+    "The node containing the Service"
+    node: Service!
+}
+
+type ServiceMaxAggregate {
+    id: ID
+}
+
+type ServiceMinAggregate {
+    id: ID
+}
+
+type ServiceSumAggregate {
+    id: Float
+}
+
+type Subscription {
+    driverLocationUpdated(driverId: ID!): Point!
+    newMessageReceived: OrderMessage!
+    orderUpdated: Order!
+}
+
+type TopUpWalletResponse {
+    status: TopUpWalletStatus!
+    url: String!
+}
+
+type UpdateManyResponse {
+    "The number of records updated."
+    updatedCount: Int!
+}
+
+enum AnnouncementSortFields {
+    id
+}
+
+enum CalculateFareError {
+    NoServiceInRegion
+    RegionUnsupported
+}
+
+enum ComplaintStatus {
+    Resolved
+    Submitted
+    UnderInvestigation
+}
+
+enum CouponSortFields {
+    id
+}
+
+enum Gender {
+    Female
+    Male
+    Unknown
+}
+
+enum MessageStatus {
+    Delivered
+    Seen
+    Sent
+}
+
+enum OrderMessageSortFields {
+    id
+    requestId
+}
+
+enum OrderSortFields {
+    driverId
+    id
+    riderId
+    status
+}
+
+enum OrderStatus {
+    Arrived
+    Booked
+    DriverAccepted
+    DriverCanceled
+    Expired
+    Finished
+    Found
+    NoCloseFound
+    NotFound
+    Requested
+    RiderCanceled
+    Started
+    WaitingForPostPay
+    WaitingForPrePay
+    WaitingForReview
+}
+
+enum PaymentGatewaySortFields {
+    id
+}
+
+enum PaymentGatewayType {
+    AmazonPaymentServices
+    BrainTree
+    CustomLink
+    Flutterwave
+    Instamojo
+    MIPS
+    MercadoPago
+    MyTMoney
+    PayGate
+    PayPal
+    PayU
+    Paystack
+    Paytm
+    Razorpay
+    Stripe
+    WayForPay
+}
+
+enum RiderAddressSortFields {
+    id
+}
+
+enum RiderAddressType {
+    Home
+    Other
+    Partner
+    Work
+}
+
+enum RiderDeductTransactionType {
+    Correction
+    OrderFee
+    Withdraw
+}
+
+enum RiderRechargeTransactionType {
+    BankTransfer
+    Correction
+    Gift
+    InAppPayment
+}
+
+enum RiderTransacionSortFields {
+    id
+    riderId
+}
+
+enum RiderWalletSortFields {
+    id
+    riderId
+}
+
+enum ServiceCategorySortFields {
+    id
+}
+
+enum ServicePaymentMethod {
+    CashCredit
+    OnlyCash
+    OnlyCredit
+}
+
+"Sort Directions"
+enum SortDirection {
+    ASC
+    DESC
+}
+
+"Sort Nulls Options"
+enum SortNulls {
+    NULLS_FIRST
+    NULLS_LAST
+}
+
+enum TopUpWalletStatus {
+    OK
+    Redirect
+}
+
+enum TransactionAction {
+    Deduct
+    Recharge
+}
+
+input AddConversationsToOrderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input AddCouponsToRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input AddOrdersToRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input AnnouncementFilter {
+    and: [AnnouncementFilter!]
+    id: IDFilterComparison
+    or: [AnnouncementFilter!]
+}
+
+input AnnouncementSort {
+    direction: SortDirection!
+    field: AnnouncementSortFields!
+    nulls: SortNulls
+}
+
+input CalculateFareInput {
+    points: [PointInput!]!
+}
+
+input ComplaintInput {
+    content: String
+    requestId: ID!
+    requestedByDriver: Boolean
+    subject: String!
+}
+
+input CouponFilter {
+    and: [CouponFilter!]
+    id: IDFilterComparison
+    or: [CouponFilter!]
+}
+
+input CouponSort {
+    direction: SortDirection!
+    field: CouponSortFields!
+    nulls: SortNulls
+}
+
+input CreateAnnouncement {
+    description: String
+    expireAt: Timestamp
+    id: ID
+    startAt: Timestamp
+    title: String
+}
+
+input CreateManyAnnouncementsInput {
+    "Array of records to create"
+    announcements: [CreateAnnouncement!]!
+}
+
+input CreateManyRiderAddressesInput {
+    "Array of records to create"
+    riderAddresses: [CreateRiderAddressInput!]!
+}
+
+input CreateOneAnnouncementInput {
+    "The record to create"
+    announcement: CreateAnnouncement!
+}
+
+input CreateOneComplaintInput {
+    "The record to create"
+    complaint: ComplaintInput!
+}
+
+input CreateOneOrderMessageInput {
+    "The record to create"
+    orderMessage: OrderMessageInput!
+}
+
+input CreateOneRiderAddressInput {
+    "The record to create"
+    riderAddress: CreateRiderAddressInput!
+}
+
+input CreateOrderInput {
+    addresses: [String!]!
+    intervalMinutes: Int!
+    points: [PointInput!]!
+    serviceId: Int!
+}
+
+input CreateRiderAddressInput {
+    details: String!
+    location: PointInput!
+    title: String!
+}
+
+input CursorPaging {
+    "Paginate after opaque cursor"
+    after: ConnectionCursor
+    "Paginate before opaque cursor"
+    before: ConnectionCursor
+    "Paginate first"
+    first: Int
+    "Paginate last"
+    last: Int
+}
+
+input DeleteManyRiderAddressesInput {
+    "Filter to find records to delete"
+    filter: RiderAddressDeleteFilter!
+}
+
+input DeleteOneRiderAddressInput {
+    "The id of the record to delete."
+    id: ID!
+}
+
+input IDFilterComparison {
+    eq: ID
+    gt: ID
+    gte: ID
+    iLike: ID
+    in: [ID!]
+    is: Boolean
+    isNot: Boolean
+    like: ID
+    lt: ID
+    lte: ID
+    neq: ID
+    notILike: ID
+    notIn: [ID!]
+    notLike: ID
+}
+
+input LoginInput {
+    firebaseToken: String!
+}
+
+input OrderFilter {
+    and: [OrderFilter!]
+    driverId: IDFilterComparison
+    id: IDFilterComparison
+    or: [OrderFilter!]
+    riderId: IDFilterComparison
+    status: OrderStatusFilterComparison
+}
+
+input OrderMessageFilter {
+    and: [OrderMessageFilter!]
+    id: IDFilterComparison
+    or: [OrderMessageFilter!]
+    requestId: IDFilterComparison
+}
+
+input OrderMessageInput {
+    content: String!
+    requestId: ID!
+}
+
+input OrderMessageSort {
+    direction: SortDirection!
+    field: OrderMessageSortFields!
+    nulls: SortNulls
+}
+
+input OrderSort {
+    direction: SortDirection!
+    field: OrderSortFields!
+    nulls: SortNulls
+}
+
+input OrderStatusFilterComparison {
+    eq: OrderStatus
+    gt: OrderStatus
+    gte: OrderStatus
+    iLike: OrderStatus
+    in: [OrderStatus!]
+    is: Boolean
+    isNot: Boolean
+    like: OrderStatus
+    lt: OrderStatus
+    lte: OrderStatus
+    neq: OrderStatus
+    notILike: OrderStatus
+    notIn: [OrderStatus!]
+    notLike: OrderStatus
+}
+
+input PaymentGatewayFilter {
+    and: [PaymentGatewayFilter!]
+    id: IDFilterComparison
+    or: [PaymentGatewayFilter!]
+}
+
+input PaymentGatewaySort {
+    direction: SortDirection!
+    field: PaymentGatewaySortFields!
+    nulls: SortNulls
+}
+
+input PointInput {
+    lat: Float!
+    lng: Float!
+}
+
+input RemoveCarColorFromDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveCarFromDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveConversationsFromOrderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input RemoveCouponsFromRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input RemoveDriverFromOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveMediaFromDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveMediaFromRiderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveMediaFromServiceInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveOrdersFromRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input RemovePaymentGatewayFromOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveRequestFromOrderMessageInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveRiderFromOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RemoveServiceFromOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input RiderAddressDeleteFilter {
+    and: [RiderAddressDeleteFilter!]
+    id: IDFilterComparison
+    or: [RiderAddressDeleteFilter!]
+}
+
+input RiderAddressFilter {
+    and: [RiderAddressFilter!]
+    id: IDFilterComparison
+    or: [RiderAddressFilter!]
+}
+
+input RiderAddressSort {
+    direction: SortDirection!
+    field: RiderAddressSortFields!
+    nulls: SortNulls
+}
+
+input RiderAddressUpdateFilter {
+    and: [RiderAddressUpdateFilter!]
+    id: IDFilterComparison
+    or: [RiderAddressUpdateFilter!]
+}
+
+input RiderTransacionFilter {
+    and: [RiderTransacionFilter!]
+    id: IDFilterComparison
+    or: [RiderTransacionFilter!]
+    riderId: IDFilterComparison
+}
+
+input RiderTransacionSort {
+    direction: SortDirection!
+    field: RiderTransacionSortFields!
+    nulls: SortNulls
+}
+
+input RiderWalletFilter {
+    and: [RiderWalletFilter!]
+    id: IDFilterComparison
+    or: [RiderWalletFilter!]
+    riderId: IDFilterComparison
+}
+
+input RiderWalletSort {
+    direction: SortDirection!
+    field: RiderWalletSortFields!
+    nulls: SortNulls
+}
+
+input ServiceCategoryFilter {
+    and: [ServiceCategoryFilter!]
+    id: IDFilterComparison
+    or: [ServiceCategoryFilter!]
+}
+
+input ServiceCategorySort {
+    direction: SortDirection!
+    field: ServiceCategorySortFields!
+    nulls: SortNulls
+}
+
+input SetCarColorOnDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetCarOnDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetConversationsOnOrderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input SetCouponsOnRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input SetDriverOnOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetMediaOnDriverInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetMediaOnRiderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetMediaOnServiceInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetOrdersOnRiderInput {
+    "The id of the record."
+    id: ID!
+    "The ids of the relations."
+    relationIds: [ID!]!
+}
+
+input SetPaymentGatewayOnOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetRequestOnOrderMessageInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetRiderOnOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SetServiceOnOrderInput {
+    "The id of the record."
+    id: ID!
+    "The id of relation."
+    relationId: ID!
+}
+
+input SubmitFeedbackInput {
+    description: String!
+    requestId: ID!
+    score: Int!
+}
+
+input TopUpWalletInput {
+    amount: Float!
+    currency: String!
+    gatewayId: ID!
+    otp: Float
+    pin: Float
+    token: String
+    transactionId: String
+}
+
+input UpdateManyRiderAddressesInput {
+    "Filter used to find fields to update"
+    filter: RiderAddressUpdateFilter!
+    "The update to apply to all records found using the filter"
+    update: UpdateRiderAddress!
+}
+
+input UpdateOneRiderAddressInput {
+    "The id of the record to update"
+    id: ID!
+    "The update to apply."
+    update: UpdateRiderAddress!
+}
+
+input UpdateOneRiderInput {
+    "The id of the record to update"
+    id: ID!
+    "The update to apply."
+    update: UpdateRiderInput!
+}
+
+input UpdateRiderAddress {
+    details: String
+    id: ID
+    location: PointInput
+    title: String
+    type: RiderAddressType
+}
+
+input UpdateRiderInput {
+    email: String
+    firstName: String
+    gender: Gender
+    lastName: String
+    notificationPlayerId: String
+}
+
+
+"`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch."
+scalar Timestamp
+
+"Cursor for paging through collections"
+scalar ConnectionCursor

@@ -1,0 +1,22 @@
+fragment BasicProfile on Rider {
+  id
+  mobileNumber
+  firstName
+  lastName
+  gender
+  email
+  media {
+    address
+  }
+}
+query GetRider {
+  rider(id: 1) {
+    ...BasicProfile
+  }
+}
+
+mutation UpdateProfile($firstName: String!, $lastName: String!, $gender: Gender, $email: String) {
+  updateOneRider(input: { id: "1", update: {firstName: $firstName, lastName: $lastName, gender: $gender, email: $email}}) {
+    id
+  }
+}

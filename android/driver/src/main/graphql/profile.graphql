@@ -1,0 +1,53 @@
+query GetDriver {
+  driver(id: "1") {
+    id
+    status
+    firstName
+    lastName
+    gender
+    email
+    mobileNumber
+    accountNumber
+    bankName
+    bankRoutingNumber
+    address
+    softRejectionNote
+    documents {
+      id
+      address
+    }
+    bankSwift
+    media {
+      id
+      address
+    }
+    carPlate
+    carProductionYear
+    certificateNumber
+    carColorId
+    carModelId
+  }
+  carModels {
+    id
+    name
+  }
+  carColors {
+    id
+    name
+  }
+}
+
+mutation Login($firebaseToken: String!) {
+  login(input: {firebaseToken: $firebaseToken}) {
+    jwtToken
+  }
+}
+
+mutation updateDriverProfile($driverId: ID!, $relationIds: [ID!]!, $driverUpdate: UpdateDriverInput!) {
+  updateOneDriver(input: {id: $driverId, update: $driverUpdate}) {
+    ...BasicProfile
+  }
+  setDocumentsOnDriver(input: {id: $driverId, relationIds: $relationIds}) {
+    ...BasicProfile
+  }
+}

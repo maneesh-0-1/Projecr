@@ -1,0 +1,36 @@
+query Wallet {
+    riderWallets {
+        id
+        balance
+        currency
+    }
+    paymentGateways {
+        id
+        title
+        type
+        publicKey
+    }
+}
+
+mutation TopUpWallet($input: TopUpWalletInput!) {
+    topUpWallet(input: $input) {
+        status
+        url
+    }
+}
+
+query Transactions {
+    riderTransacions(paging: {first: 20}, sorting: [{field: id, direction: DESC}]) {
+        edges {
+            node {
+                createdAt
+                amount
+                currency
+                refrenceNumber
+                deductType
+                action
+                rechargeType
+            }
+        }
+    }
+}

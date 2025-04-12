@@ -1,0 +1,14 @@
+query History {
+    completed: orders(filter: { status: {in: [Finished, WaitingForReview] }}) {
+        ...historyOrderItem
+    }
+    canceled: orders(filter: { status: {eq: DriverCanceled }}) {
+        ...historyOrderItem
+    }
+}
+
+mutation WriteComplaint($orderId: ID!, $subject: String!, $content: String) {
+    createOneComplaint(input: {complaint: {requestId: $orderId, subject: $subject, content: $content}}) {
+        id
+    }
+}
